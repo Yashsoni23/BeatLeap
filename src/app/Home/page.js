@@ -38,10 +38,7 @@ export default function Main() {
         setAccessToken(localStorage.getItem('accessToken'));
     }, [])
     useEffect(() => {
-        if (!accessToken) {
-            return
-        }
-        else {
+        if (accessToken) {
             spotifyWebAPI.setAccessToken(accessToken);
             spotifyWebAPI.getNewReleases({ limit: 50, offset: 0, country: 'IN' }).then((data) => {
                 console.log(data, "new releases");
@@ -68,7 +65,10 @@ export default function Main() {
             }
             )
         }
-    }, [])
+        else {
+            return;
+        }
+    }, [accessToken])
 
     return (
         <>
