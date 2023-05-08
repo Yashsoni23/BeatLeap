@@ -12,7 +12,7 @@ export default function useAuth(code) {
   }, [])
   function Login() {
     axios
-      .post("http://localhost:3001/login", {
+      .post("https://apibeatleap.netlify.app/login", {
         code,
       })
       .then(res => {
@@ -34,7 +34,7 @@ export default function useAuth(code) {
       const timeout = setTimeout(() => {
         console.log(refreshToken, expiresIn, "refreshToken, expiresIn");
         axios
-          .post("http://localhost:3001/refresh", {
+          .post("https://apibeatleap.netlify.app/refresh", {
             refreshToken,
           })
           .then(res => {
