@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from "react"
 import axios from "axios"
-import { getItem, setItem } from "localStorage"
 
 export default function useAuth(code) {
   const [accessToken, setAccessToken] = useState()

@@ -21,6 +21,9 @@ html::-webkit-scrollbar{
 .flex::-webkit-scrollbar{
   display: none;
 }
+.relative::-webkit-scrollbar{
+  display: none;
+}
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

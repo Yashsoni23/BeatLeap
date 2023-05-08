@@ -2,21 +2,19 @@
 import React, { useEffect, useState } from 'react'
 import useAuth from './useAuth'
 import Navbar from './Navbar';
-import { Router, useRouter } from 'next/router';
-
 const Dashboard = ({code}) => {
     const getAccessCode = useAuth(code);
-    const router =  useRouter();
-    let accessToken;
+    const [accessToken, setAccessToken] = useState();
   
     useEffect(() => {
-        accessToken = localStorage.getItem('accessToken');
+        setAccessToken(localStorage.getItem('accessToken'))
         if(accessToken){
-            router.push('/Home')
+            window.location = '/Home'
         }
     }, [])
     return (
         <>
+
             <Navbar/>
 
         </>

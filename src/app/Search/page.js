@@ -16,8 +16,7 @@ const spotifyWebAPI = new SpotifyWebApi({
 });
 
 export default function Search() {
-
-  let accessToken = localStorage.getItem('accessToken');
+const [accessToken,setAccessToken] = useState();
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [recentlyPlayed, setRecentlyPlayed] = useState([]);
@@ -32,6 +31,7 @@ export default function Search() {
 
   useEffect(() => {
     console.log(accessToken);
+    setAccessToken(localStorage.getItem('accessToken'))
     if (!accessToken) return;
     spotifyWebAPI.setAccessToken(accessToken);
     spotifyWebAPI.getMyRecentlyPlayedTracks().then((data)=>{

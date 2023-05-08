@@ -12,16 +12,16 @@ const spotifyWebAPI = new SpotifyWebApi({
 });
 
 export default function Navbar() {
+    const [accessToken, setAccessToken] = useState();
     const [userInfo, setUserInfo] = useState({
         name: "",
         email: "",
         image: "",
         premium: "",
     })
-    let accessToken = localStorage.getItem('accessToken');
     const [toggle, setToggle] = useState(false);
     useEffect(() => {
-
+        setAccessToken(localStorage.getItem('accessToken'))
         spotifyWebAPI.setAccessToken(accessToken);
         spotifyWebAPI.getMe().then((data) => {
             console.log(data);
@@ -34,19 +34,24 @@ export default function Navbar() {
         });
 
     }, [accessToken])
+
+    const handleLogout = () => {
+        localStorage.removeItem('accessToken');
+        window.location = '/'
+    }
     return (
-        <div className='flex bg-gradient-to-t from-black to-gray-800 justify-between p-2 px-10 w-screen h-max'>
+        <div className='flex sticky top-0 z-50 bg-gradient-to-t from-black to-gray-800 justify-between p-2 px-10 w-screen h-max'>
             <div className="flex justify-center items-center">
                 <span className='block bg-logo bg-cover w-[3rem] h-[3rem] m-3' />
-                <h1 className='text-primary text-3xl font-bold text-center'>
+                <h1 className='text-primary text-3xl font-bold text-center cursor-pointer' onClick={handleLogout}>
                     BeatLeap
-                </h1>
+                </h1 >
             </div>
 
             <div className="lg:flex hidden justify-center text-primary font-bold gap-10 text-3xl  items-center">
                 <Link href='/Home' className='flex justify-center gap-3 items-center'><BiHomeAlt2 />Home</Link>
                 <Link href='/Search' className='flex justify-center gap-3 items-center'><BiSearchAlt />Search</Link>
-                <Link href='/beatstack' className='flex justify-center gap-3 items-center'><CgStack />Beat Stack</Link>
+                <Link href='/Beatstack' className='flex justify-center gap-3 items-center'><CgStack />Beat Stack</Link>
                 <Link href='/liked' className='flex justify-center gap-3 items-center'><AiOutlineHeart />Liked</Link>
                 <div onClick={()=>setToggle(!toggle)} className='flex cursor-pointer relative justify-center gap-3 items-center text-l-white p-3 rounded-full bg-gradient-to-t from-gray-900 to-[#2934D1]'><BiUserCircle />User <IoIosArrowDropdown className={toggle?"rotate-180":"rotate-0"}/>
                     <div className={`absolute ${toggle?"flex":"hidden"} cursor-default w-max  gap-4 top-16 right-0 z-50 rounded-2xl  bg-slate-700 p-4 `}>
