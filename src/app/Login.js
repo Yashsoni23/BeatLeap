@@ -10,16 +10,16 @@ const Login = () => {
   return (
     <>
 
-      <div className="flex bg-violet-900 flex-col object-contain cursor-pointer  max-[450px]:bg-gradient-to-r from-violet-500 p-20 to-fuchsia-500 sm:bg-hero bg-cover w-screen h-screen ">
-        <div className="flex w-1/2 flex-col gap-10">
-          <h1 className='text-6xl font-semibold'>Leap into Beat, <span className='text-[#2934D1]'>User.</span></h1>
-          <h1 className='text-3xl font-medium'>Unleash your musical journey with <span className='text-[#246DC5]'>BeatLeap</span>
+     <div className="flex bg-violet-900 flex-col object-contain max-[450px]:justify-center max-[450px]:items-center cursor-pointer  max-[450px]:bg-gradient-to-r from-violet-500 p-20 to-fuchsia-500 bg-hero bg-cover w-screen h-screen ">
+        <div className="flex w-full sm:w-1/2 flex-col gap-10">
+          <h1 className='sm:text-6xl text-3xl font-semibold'>Leap into Beat, <span className='text-[#2934D1]'>User.</span></h1>
+          <h1 className='sm:text-3xl text-2xl font-medium'>Unleash your musical journey with <span className='text-[#581be8]'>BeatLeap</span>
           </h1>
-          <h1 className='text-3xl w-4/5 font-light'>Access a vast collection of high-quality royalty-free music across various genres and moods.</h1>
+          <h1 className='sm:text-3xl text-xl w-full sm:w-4/5 font-light'>Access a vast collection of high-quality royalty-free music across various genres and moods.</h1>
 
           <div className="text-primary  w-max flex justify-center items-center gap-3 rounded-lg bg-white">
             <span className='block bg-logo bg-cover w-[3rem] h-[3rem] m-2' />
-            <a href={AUTH_URI} className=' font-bold pr-3  text-2xl'>Login To BeatLeap</a>
+            <a href={AUTH_URI} className=' font-bold pr-3  text-xl sm:text-2xl'>Login To BeatLeap</a>
           </div>
         </div>
 
