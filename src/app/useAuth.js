@@ -23,7 +23,7 @@ export default function useAuth(code) {
         window.history.pushState({}, null, "/Home")
       })
       .catch(() => {
-        window.location = "/"
+//         window.location = "/"
       })
   }
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function useAuth(code) {
 
           })
           .catch(() => {
-            window.location = "/"
+//             window.location = "/"
           })
       }, (expiresIn - 120) * 1000)
 
