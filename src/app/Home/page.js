@@ -36,7 +36,7 @@ export default function Main() {
     })
     useEffect(() => {
         setAccessToken(localStorage.getItem('accessToken'));
-    }, [accessToken])
+    }, [])
     useEffect(() => {
         if (!accessToken) {
             return
