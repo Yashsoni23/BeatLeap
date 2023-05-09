@@ -174,7 +174,7 @@ export default function Beatstack() {
                                 liabrary && liabrary.map((artist) => {
                                     console.log(artist?.type);
                                     return (
-                                        <div className={`flex ${currentTrack?.uri === artist?.uri ? "bg-gradient-to-t from-indigo-500 to-violet-500" : "bg-inherit"} flex-col items-center   sm:gap-3`}>
+                                        <div key={artist.id} className={`flex ${currentTrack?.uri === artist?.uri ? "bg-gradient-to-t from-indigo-500 to-violet-500" : "bg-inherit"} flex-col items-center   sm:gap-3`}>
                                             {
                                                 artist?.type === "artist" ?
                                                 <img src={artist.image} className="cursor-pointer w-[100px] h-[100px] object-cover" 
@@ -272,7 +272,7 @@ export default function Beatstack() {
                                 trackLiabrary && trackLiabrary.map((track) => {
 
                                     return (
-                                        <div className={`flex ${currentTrack.uri === track.uri ? "bg-gradient-to-t from-indigo-500 to-violet-500" : "bg-inherit"} p-2 cursor-pointer flex-col sm:flex-row items-center sm:justify-between  sm:gap-3`}
+                                        <div key={track.id} className={`flex ${currentTrack.uri === track.uri ? "bg-gradient-to-t from-indigo-500 to-violet-500" : "bg-inherit"} p-2 cursor-pointer flex-col sm:flex-row items-center sm:justify-between  sm:gap-3`}
                                             onClick={() => setCurrentTrack({
                                                 name: track.name,
                                                 id: track.id,

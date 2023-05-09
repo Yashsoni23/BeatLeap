@@ -118,7 +118,7 @@ export default function Beatstack() {
                                     Usersplaylists && Usersplaylists.map((playlist) => {
                                         return (
                                             <>
-                                                <div className={`flex cursor-pointer flex-col sm:items-center justify- gap-4`} onClick={() => setCurrentPlaylist({
+                                                <div key={playlist.id} className={`flex cursor-pointer flex-col sm:items-center justify- gap-4`} onClick={() => setCurrentPlaylist({
                                                     name: playlist.name,
                                                     id: playlist.id,
                                                     image: playlist.image,
@@ -176,7 +176,7 @@ export default function Beatstack() {
                             {
                                 currentPlaylistsTrack && currentPlaylistsTrack.map((track) => {
                                     return (
-                                        <div className={`flex ${currentTrack.uri === track.uri ? "bg-gradient-to-t from-indigo-500 to-violet-500" : "bg-inherit"} p-2 cursor-pointer flex-col sm:flex-row items-center sm:justify-between  sm:gap-3`}
+                                        <div key={track.id} className={`flex ${currentTrack.uri === track.uri ? "bg-gradient-to-t from-indigo-500 to-violet-500" : "bg-inherit"} p-2 cursor-pointer flex-col sm:flex-row items-center sm:justify-between  sm:gap-3`}
                                             onClick={() => setCurrentTrack({
                                                 name: track.name,
                                                 id: track.id,
