@@ -1,7 +1,7 @@
 "use client"
 import { URLSearchParams } from 'next/dist/compiled/@edge-runtime/primitives/url'
 import React from 'react'
-const AUTH_URI = "https://accounts.spotify.com/authorize?client_id=006dbf49774c4c07bc93b4ef1f006518&response_type=code&show_dialog=true&redirect_uri=http://localhost:3000&scope=user-library-read%20user-read-playback-state%20user-top-read%20user-follow-read%20user-read-recently-played%20user-follow-read%20user-read-private%20playlist-read-private%20playlist-modify-private%20streaming%20user-read-private%20user-read-email"
+const AUTH_URI = "https://accounts.spotify.com/authorize?client_id=006dbf49774c4c07bc93b4ef1f006518&response_type=code&show_dialog=true&redirect_uri=https://beatleap.netlify.app&scope=user-library-read%20user-read-playback-state%20user-top-read%20user-follow-read%20user-read-recently-played%20user-follow-read%20user-read-private%20playlist-read-private%20playlist-modify-private%20streaming%20user-read-private%20user-read-email"
 
 
 const Login = () => {
@@ -10,7 +10,7 @@ const Login = () => {
   return (
     <>
 
-      <div className="flex bg-violet-900 flex-col object-contain max-[450px]:justify-center max-[450px]:items-center cursor-pointer  max-[450px]:bg-gradient-to-r from-violet-500 p-20 to-fuchsia-500 bg-hero bg-cover w-screen h-screen ">
+     <div className="flex bg-violet-900 flex-col object-contain max-[450px]:justify-center max-[450px]:items-center cursor-pointer  max-[450px]:bg-gradient-to-r from-violet-500 p-20 to-fuchsia-500 bg-hero bg-cover w-screen h-screen ">
         <div className="flex w-full sm:w-1/2 flex-col gap-10">
           <h1 className='sm:text-6xl text-3xl font-semibold'>Leap into Beat, <span className='text-[#2934D1]'>User.</span></h1>
           <h1 className='sm:text-3xl text-2xl font-medium'>Unleash your musical journey with <span className='text-[#581be8]'>BeatLeap</span>

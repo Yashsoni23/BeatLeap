@@ -12,7 +12,7 @@ export default function useAuth(code) {
   }, [])
   function Login() {
     axios
-      .post("http://localhost:3001/login", {
+      .post("https://apibeatleap.adaptable.app/login", {
         code,
       })
       .then(res => {
@@ -23,7 +23,7 @@ export default function useAuth(code) {
         window.history.pushState({}, null, "/Home")
       })
       .catch(() => {
-        window.location = "/"
+//         window.location = "/"
       })
   }
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function useAuth(code) {
       const timeout = setTimeout(() => {
         console.log(refreshToken, expiresIn, "refreshToken, expiresIn");
         axios
-          .post("http://localhost:3001/refresh", {
+          .post("https://apibeatleap.adaptable.app/refresh", {
             refreshToken,
           })
           .then(res => {
@@ -45,7 +45,7 @@ export default function useAuth(code) {
 
           })
           .catch(() => {
-            window.location = "/"
+//             window.location = "/"
           })
       }, (expiresIn - 120) * 1000)
 

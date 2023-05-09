@@ -30,9 +30,12 @@ export default function Search() {
     id: ""
   })
 
+  useEffect(()=>{
+    setAccessToken(localStorage.getItem('accessToken'))
+  },[]);
   useEffect(() => {
     console.log(accessToken);
-    setAccessToken(localStorage.getItem('accessToken'))
+    
     if (!accessToken) return;
     spotifyWebAPI.setAccessToken(accessToken);
     spotifyWebAPI.getMyRecentlyPlayedTracks().then((data) => {
