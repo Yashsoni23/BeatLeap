@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
     {
-      code ? <Dashboard code={code}/> : <Login/>
+      code ? <Dashboard /> : <Login/>
     }
     </>
   )
