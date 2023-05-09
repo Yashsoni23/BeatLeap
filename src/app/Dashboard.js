@@ -220,7 +220,7 @@ const Dashboard = () => {
                 </div>
 {/* ---------------------------------------------Footer Here-------------------------------------------------------- */}
 
-                <div className="flex gap-4  sm:gap-8 flex-col justify-center items-center w-full h-max  pb-32 p-4 sm:p-10">
+                <div className="flex gap-4  sm:gap-8 flex-col justify-center items-center w-full h-max  pb-32  sm:p-32">
                     <div className="flex justify-center items-center gap-20">
                         <div className="flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-4">
                             <div onClick={()=>window.open("https://www.linkedin.com/in/yash-simejiya-8288a6225/","_blank")} className="bg-developer bg-cover cursor-pointer w-[50px] sm:w-[100px] h-[50px] sm:h-[100px] rounded-full "></div>

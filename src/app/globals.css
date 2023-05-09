@@ -34,6 +34,11 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.sideShadow{
+  /* background: #7c0b0b; */
+  box-shadow: 10px 0 40px 10px rgba(232, 232, 232, 0.295);
+}
+
 .slideInDown {
   -webkit-animation-name: slideInDown;
   animation-name: slideInDown;

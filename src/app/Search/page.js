@@ -9,6 +9,7 @@ import SpotifyPlayer from 'react-spotify-web-playback';
 import { FaItunesNote } from "react-icons/fa"
 import { AiFillPlayCircle } from "react-icons/ai"
 import { BiPlayCircle } from "react-icons/bi"
+import { RxLoop } from 'react-icons/rx';
 
 
 const spotifyWebAPI = new SpotifyWebApi({
@@ -88,6 +89,19 @@ export default function Search() {
   }, [search])
 
 
+  const startLoop = () => {
+    //   generate tracks uri by reduce method
+    const tracksUri = recentlyPlayed.reduce((acc, track) => {
+      return acc + track.uri + ","
+    }, "").split(",").slice(0, -1)
+    console.log(tracksUri, "tracksUri");
+    setCurrentTrack({
+      ...currentTrack,
+      uri: tracksUri
+    })
+    // console.log(currentTrack);
+    //   setQueue(tracksUri) 
+  }
 
 
   return (
@@ -159,10 +173,13 @@ export default function Search() {
 
           </div>
           <div className="player fixed bottom-0 w-full z-50 ">
+            <div className="float-right absolute bottom-18 sm:right-44 sm:bottom-2 z-[99] right-0 font-bold text-2xl p-5 white">
+              <RxLoop className='text-2xl cursor-pointer' onClick={startLoop} />
+            </div>
             <SpotifyPlayer
               play={true}
               token={accessToken}
-              uris={[currentTrack.uri]}
+              uris={currentTrack.uri}
               styles={{
                 bgColor: '#0F172A',
                 activeColor: '#fff',

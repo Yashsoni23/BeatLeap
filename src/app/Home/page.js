@@ -211,7 +211,7 @@ export default function Main() {
                 </div>
 {/* ---------------------------------------------Footer Here-------------------------------------------------------- */}
 
-                <div className="flex gap-4  sm:gap-8 flex-col justify-center items-center w-full h-max  pb-32 p-4 sm:p-10">
+                <div className="flex gap-4  sm:gap-8 flex-col justify-center items-center w-full h-max pb-32 sm:p-32">
                     <div className="flex justify-center items-center gap-20">
                         <div className="flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-4">
                             <div onClick={()=>window.open("https://www.linkedin.com/in/yash-simejiya-8288a6225/","_blank")} className="bg-developer bg-cover cursor-pointer w-[50px] sm:w-[100px] h-[50px] sm:h-[100px] rounded-full "></div>
@@ -229,7 +229,9 @@ export default function Main() {
                         </div>
                     </div>
                     <h1 className='font-bold text-[.6rem] sm:text-xl'>Feedback, bugs, suggestions all <a className='text-blue-500' href="mailto:yashsoni48678@gmail.com">welcome</a>.</h1>
+
                     <h1 className='text-xs sm:text-xl'>&copy; 2023  BeatLeap</h1>
+
                 </div>
 
 {/* ---------------------------------------------Player Here-------------------------------------------------------- */}

@@ -78,7 +78,7 @@ export default function Navbar() {
                             <Link href='/Home' className='flex pt-3 justify-center gap-3 items-center'><BiHomeAlt2 />Home</Link>
                             <Link href='/Search' className='flex justify-center gap-3 items-center'><BiSearchAlt />Search</Link>
                             <Link href='/Beatstack' className='flex justify-center gap-3 items-center'><CgStack />Beat Stack</Link>
-                            <Link href='/liked' className='flex justify-center gap-3 items-center'><AiOutlineHeart />Liked</Link>
+                            <Link href='/Liked' className='flex justify-center gap-3 items-center'><AiOutlineHeart />Liked</Link>
                             <div onClick={() => setToggle(!toggle)} className='flex cursor-pointer relative justify-center gap-3 items-center text-l-white p-2 rounded-full bg-gradient-to-t from-gray-900 to-[#2934D1]'><BiUserCircle />User <IoIosArrowDropdown className={toggle ? "rotate-180" : "rotate-0"} />
                                 <div className={`absolute z-30  ${toggle ? "zoomInUp flex  flex-col justify-center items-center" : "hidden zoomOutDown"} cursor-default w-full  gap-4 top-11 shadow-2xl right-0 z-50 rounded-2xl  bg-slate-900 p-2 `}>
                                     <img src={userInfo.image} alt="user-image" className='rounded-full' width={70} height={70} />
@@ -97,7 +97,7 @@ export default function Navbar() {
                 <Link href='/Home' className='flex justify-center gap-3 items-center'><BiHomeAlt2 />Home</Link>
                 <Link href='/Search' className='flex justify-center gap-3 items-center'><BiSearchAlt />Search</Link>
                 <Link href='/Beatstack' className='flex justify-center gap-3 items-center'><CgStack />Beat Stack</Link>
-                <Link href='/liked' className='flex justify-center gap-3 items-center'><AiOutlineHeart />Liked</Link>
+                <Link href='/Liked' className='flex justify-center gap-3 items-center'><AiOutlineHeart />Liked</Link>
                 <div onClick={() => setToggle(!toggle)} className='flex cursor-pointer relative justify-center gap-3 items-center text-l-white p-2 rounded-full bg-gradient-to-t from-gray-900 to-[#2934D1]'><BiUserCircle />User <IoIosArrowDropdown className={toggle ? "rotate-180" : "rotate-0"} />
                     <div className={`absolute ${toggle ? "flex" : "hidden"} cursor-default w-max  gap-4 top-16 right-0 z-50 rounded-2xl  bg-slate-700 p-2 `}>
                         <img src={userInfo.image} alt="user-image" className='rounded-full' width={70} height={70} />
