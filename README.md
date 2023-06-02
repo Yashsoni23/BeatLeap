@@ -55,9 +55,6 @@ This section has all the records of your liked Songs, Artists, Playlist and Movi
 
 You can click on the BeatLeap logo to log out from the Web App.
 
-## Logo
-
-![App Screenshot](Images/Logo.png)
 
 # UI Design Preview & link
 
