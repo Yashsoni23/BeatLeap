@@ -5,7 +5,7 @@ You can access a vast collection of high quality royalty free music across vario
 
 ## Preview
 
-![App Screenshot](<Images/Site GIF.gif>)
+![App Screenshot](</Images/Site GIF.gif>)
 
 ## Features
 
