@@ -5,7 +5,7 @@ You can access a vast collection of high quality royalty free music across vario
 
 ## Preview
 
-![App Screenshot](<beatleap(2).gif>)
+![App Screenshot](<Images/Site GIF.gif>)
 
 ## Features
 
@@ -31,25 +31,25 @@ You can access a vast collection of high quality royalty free music across vario
 
 Welcome to our platform, your one-stop destination for all things music! We've got you covered with a wide range of exciting features, including newly released songs, handpicked playlists, popular categories, and talented artists. Dive into the latest hits, groove to curated playlists, explore different genres, and find your favorite tunes effortlessly. Join us on this musical adventure and let the rhythm guide you to your perfect soundtrack.
 
-![App Screenshot](Home.png)
+![App Screenshot](Images/Home.png)
 
 ## Page 2 - Search & Recommendation Section
 
 This Page is devided into two sections. the first section suggests you Songs and Artists. The other Section shows your recent plays. The upper section of the suggestions is a search bar where you can search whichever song you want to listen.
 
-![App Screenshot](Search.png)
+![App Screenshot](Images/Search.png)
 
 ## Page 3 - Beat Stack (Playlist)
 
 This section is based on Playslists only. On the left side, you can see Playlists created by you and on the other side you can see suggestions of multiple playlist in different genres.
 
-![App Screenshot](Beatstack.png)
+![App Screenshot](Images/Beatstack.png)
 
 ## Page 4 - Liked Section
 
 This section has all the records of your liked Songs, Artists, Playlist and Movie Playlist that you've liked by clicking on the like button.
 
-![App Screenshot](Liked.png)
+![App Screenshot](Images/Liked.png)
 
 ## Note
 
@@ -57,7 +57,7 @@ You can click on the BeatLeap logo to log out from the Web App.
 
 ## Logo
 
-![App Screenshot](logo2.png)
+![App Screenshot](Images/Logo.png)
 
 # UI Design Preview & link
 
@@ -65,7 +65,7 @@ You can click on the BeatLeap logo to log out from the Web App.
 
 - [BeatLeap](https://www.figma.com/file/mhxsRJC8smaikxftgjlnmH/BeatLeap?type=design&t=PQmQVZj5YPPplTYd-6)
 
-![App Screenshot](Cover.png)
+![App Screenshot](Images/Cover.png)
 
 ## Feedback
 
