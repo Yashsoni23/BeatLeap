@@ -1,19 +1,18 @@
-'use client';
-import Image from 'next/image'
-
-import Login from './Login'
-import {  useSearchParams } from 'next/navigation';
-import Dashboard from './Dashboard';
-
+"use client";
+import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const router = useSearchParams();
-  const code = router.get('code');
-  return (
-    <>
-    {
-      code ? <Dashboard /> : <Login/>
+  const session = useSession();
+  const router = useRouter();
+  useEffect(() => {
+    console.log(session);
+    if (session.status === "authenticated") {
+      router.refresh();
     }
-    </>
-  )
+  }, [session.data?.accessToken, router, session]);
+  return <>{session.status === "authenticated" ? <Dashboard /> : <Login />}</>;
 }
