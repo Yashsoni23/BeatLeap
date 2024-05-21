@@ -4,6 +4,8 @@ import { getServerSession } from "next-auth";
 // import Navbar from "./components/Navbar";
 import SessionProvider from "./components/SessionProvider";
 
+import { ContextProvider } from "./context/customClient";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -16,12 +18,16 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        {/* <QueryClientProvider client={queryClient}> */}
         <SessionProvider session={session}>
-          <main className=" text-white">
-            {/* <Navbar /> */}
-            {children}
-          </main>
+          <ContextProvider>
+            <main className=" text-white">
+              {/* <Navbar /> */}
+              {children}
+            </main>
+          </ContextProvider>
         </SessionProvider>
+        {/* </QueryClientProvider> */}
       </body>
     </html>
   );

@@ -17,12 +17,14 @@ import { IoArrowRedo } from "react-icons/io5";
 import { HiOutlineCog6Tooth } from "react-icons/hi2";
 import { useSession } from "next-auth/react";
 import Player from "../components/Player";
+import { useCustomContext } from "../context/customClient";
 const spotifyWebAPI = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
 });
 
 export default function Beatstack() {
   const session = useSession();
+  const context = useCustomContext();
   const [accessToken, setAccessToken] = useState();
   const [MyTopTracks, setMyTopTracks] = useState([]);
   const [MySavedTracks, setMySavedTracks] = useState([]);
@@ -31,18 +33,10 @@ export default function Beatstack() {
   const [liabrary, setLiabrary] = useState([]);
   const [trackLiabrary, setTrackLiabrary] = useState([]);
   const [toggle, setToggle] = useState(false);
-  const [currentTrack, setCurrentTrack] = useState({
-    uri: [],
-    name: "",
-    artist: "",
-    album: "",
-    image: "",
-    id: "",
-  });
 
   useEffect(() => {
-    setAccessToken(session.data?.accessToken);
-  }, []);
+    setAccessToken(context?.accessToken);
+  }, [context.accessToken, context, accessToken]);
 
   useEffect(() => {
     if (accessToken) {
@@ -151,9 +145,6 @@ export default function Beatstack() {
       });
     }
   };
-  // useEffect(() => {
-  //     getPlaylistsTracks(currentPlaylist.id);
-  // }, [currentPlaylist])
 
   const startLoop = () => {
     //   generate tracks uri by reduce method
@@ -164,12 +155,10 @@ export default function Beatstack() {
       .split(",")
       .slice(0, -1);
     console.log(tracksUri, "tracksUri");
-    setCurrentTrack({
-      ...currentTrack,
+    context.setCurrentTrack({
+      ...context.currentTrack,
       uri: tracksUri,
     });
-    console.log(currentTrack);
-    //   setQueue(tracksUri)
   };
   const setAlbums = () => {
     setLiabrary(ArtistAlbums);
@@ -189,7 +178,7 @@ export default function Beatstack() {
                     <div
                       key={artist.id}
                       className={`flex ${
-                        currentTrack?.uri === artist?.uri
+                        context?.currentTrack?.uri === artist?.uri
                           ? "bg-gradient-to-t from-indigo-500 to-violet-500"
                           : "bg-inherit"
                       } flex-col items-center   sm:gap-3`}
@@ -205,7 +194,7 @@ export default function Beatstack() {
                           src={artist.image}
                           className="cursor-pointer w-[100px] h-[100px] object-cover"
                           onClick={() =>
-                            setCurrentTrack({
+                            context.setCurrentTrack({
                               name: artist.name,
                               id: artist.id,
                               image: artist.image,
@@ -214,7 +203,7 @@ export default function Beatstack() {
                           }
                         />
                       )}
-                      {currentTrack.uri === artist.uri ? (
+                      {context?.currentTrack?.uri === artist.uri ? (
                         <div className="boxContainer">
                           <div className="box box1"></div>
                           <div className="box box2"></div>
@@ -264,8 +253,6 @@ export default function Beatstack() {
                 onClick={() => setToggle(!toggle)}
               />
             </div>
-
-            <Player accessToken={accessToken} currentTrack={currentTrack} />
           </div>
 
           <div className="flex flex-col relative sideShadow  bg-slate-900 w-max  sm:w-1/2 h-full">
@@ -276,12 +263,12 @@ export default function Beatstack() {
                     <div
                       key={track.id}
                       className={`flex ${
-                        currentTrack.uri === track.uri
+                        context?.currentTrack?.uri === track.uri
                           ? "bg-gradient-to-t from-indigo-500 to-violet-500"
                           : "bg-inherit"
                       } p-2 cursor-pointer flex-col sm:flex-row items-center sm:justify-between  sm:gap-3`}
                       onClick={() =>
-                        setCurrentTrack({
+                        context.setCurrentTrack({
                           name: track.name,
                           id: track.id,
                           image: track.image,
@@ -296,7 +283,7 @@ export default function Beatstack() {
                       <h1 className="text-white w-full text-[.5rem] sm:text-sm max-[450px]:w-[60px] font-bold ">
                         {track.name}
                       </h1>
-                      {currentTrack.uri === track.uri ? (
+                      {context?.currentTrack?.uri === track.uri ? (
                         <div className="boxContainer">
                           <div className="box box1"></div>
                           <div className="box box2"></div>

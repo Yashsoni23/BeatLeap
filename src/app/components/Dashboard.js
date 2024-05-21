@@ -6,6 +6,7 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Player from "./Player";
+import { useCustomContext } from "../context/customClient";
 
 const spotifyWebAPI = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -14,6 +15,7 @@ const spotifyWebAPI = new SpotifyWebApi({
 const Dashboard = () => {
   const router = useSearchParams();
   const session = useSession();
+  const context = useCustomContext();
   console.log(session);
   const [accessToken, setAccessToken] = useState();
   const [newReleases, setNewReleases] = useState([]);
@@ -27,18 +29,11 @@ const Dashboard = () => {
   const [artists, setArtists] = useState([]);
   const [Playlists, setPlaylists] = useState([]);
 
-  const [currentTrack, setCurrentTrack] = useState({
-    uri: "",
-    name: "",
-    artist: "",
-    album: "",
-    image: "",
-    id: "",
-  });
   useEffect(() => {
-    setAccessToken(session.data.accessToken);
-    console.log(session.data.accessToken, accessToken);
-  }, []);
+    setAccessToken(context.accessToken);
+    console.log(context?.accessToken);
+    console.log(context.accessToken, accessToken);
+  }, [context.accessToken, context, accessToken]);
 
   useEffect(() => {
     if (accessToken) {
@@ -112,13 +107,13 @@ const Dashboard = () => {
                   return (
                     <div
                       className={`flex flex-col max-[450px]:h-max backdrop-blur-2xl p-2 sm:m-2 rounded-2xl  ${
-                        currentTrack.uri === item.uri
+                        context?.currentTrack?.uri === item.uri
                           ? "border-2 border-l-white/20 gap-2 sm:gap-4 bg-slate-900"
                           : "hover:border-2 hover:border-l-white/20  gap-2 sm:gap-4  hover:bg-slate-900"
                       } cursor-pointer`}
                       key={item.id}
                       onClick={() =>
-                        setCurrentTrack({
+                        context.setCurrentTrack({
                           album: item.name,
                           artist: item.artists[0].name,
                           image: item.images[0].url,
@@ -373,9 +368,6 @@ const Dashboard = () => {
           </h1>
           <h1 className="text-xs sm:text-xl">&copy; 2023 BeatLeap</h1>
         </div>
-
-        {/* ---------------------------------------------Player Here-------------------------------------------------------- */}
-        <Player accessToken={accessToken} currentTrack={currentTrack} />
       </div>
     </>
   );

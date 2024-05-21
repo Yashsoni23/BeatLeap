@@ -9,6 +9,7 @@ import { BiPlayCircle } from "react-icons/bi";
 import { RxLoop } from "react-icons/rx";
 import { useSession } from "next-auth/react";
 import Player from "../components/Player";
+import { useCustomContext } from "../context/customClient";
 
 const spotifyWebAPI = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -16,22 +17,15 @@ const spotifyWebAPI = new SpotifyWebApi({
 
 export default function Search() {
   const [accessToken, setAccessToken] = useState();
+  const context = useCustomContext();
   const session = useSession();
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [recentlyPlayed, setRecentlyPlayed] = useState([]);
-  const [currentTrack, setCurrentTrack] = useState({
-    uri: "",
-    name: "",
-    artist: "",
-    album: "",
-    image: "",
-    id: "",
-  });
 
   useEffect(() => {
-    setAccessToken(session.data?.accessToken);
-  }, []);
+    setAccessToken(context.accessToken);
+  }, [context.accessToken, context, accessToken]);
   useEffect(() => {
     console.log(accessToken);
 
@@ -58,8 +52,7 @@ export default function Search() {
         })
       );
     });
-    console.log(recentlyPlayed);
-  }, [accessToken]);
+  }, [accessToken, recentlyPlayed]);
 
   useEffect(() => {
     if (!accessToken) return;
@@ -91,7 +84,7 @@ export default function Search() {
         })
       );
     });
-  }, [search]);
+  }, [search, accessToken]);
 
   const startLoop = () => {
     //   generate tracks uri by reduce method
@@ -102,8 +95,8 @@ export default function Search() {
       .split(",")
       .slice(0, -1);
     console.log(tracksUri, "tracksUri");
-    setCurrentTrack({
-      ...currentTrack,
+    context?.setCurrentTrack({
+      ...context?.currentTrack,
       uri: tracksUri,
     });
     // console.log(currentTrack);
@@ -143,13 +136,13 @@ export default function Search() {
                     <>
                       <div
                         className={`flex mb-1 justify-start items-center  ${
-                          currentTrack.uri === result.uri
+                          context?.currentTrack?.uri === result.uri
                             ? "bg-gradient-to-t from-indigo-500 to-violet-500"
                             : "bg-inherit"
                         } cursor-pointer hover:bg-slate-700 gap-4 sm:p-2 pl-2 rounded-xl`}
                         key={result?.id}
                         onClick={() =>
-                          setCurrentTrack({
+                          context?.setCurrentTrack({
                             uri: result.uri,
                             name: result.name,
                             artist: result.artist,
@@ -167,7 +160,7 @@ export default function Search() {
                             {result.artist}
                           </p>
                         </div>
-                        {currentTrack.uri === result.uri ? (
+                        {context?.currentTrack?.uri === result.uri ? (
                           <div class="boxContainer">
                             <div class="box box1"></div>
                             <div class="box box2"></div>
@@ -188,7 +181,6 @@ export default function Search() {
             <div className="float-right absolute bottom-18 sm:right-44 sm:bottom-2 z-[99] right-0 font-bold text-2xl p-5 white">
               <RxLoop className="text-2xl cursor-pointer" onClick={startLoop} />
             </div>
-            <Player accessToken={accessToken} currentTrack={currentTrack} />
           </div>
           <div className="lg:flex hidden relative overflow-hidden flex-col overflow-y-auto  rounded-3xl w-1/2  h-full bg-slate-600">
             <h1 className="sticky top-0 text-white font-bold text-lg drop-shadow-2xl bg-gradient-to-t from-indigo-500 to-violet-500 p-3 w-full shadow-2xl">
@@ -206,13 +198,13 @@ export default function Search() {
                   <>
                     <div
                       className={`flex mb-1 justify-start pr-8 ${
-                        currentTrack.uri === result.uri
+                        context?.currentTrack?.uri === result.uri
                           ? "bg-gradient-to-t from-indigo-500 to-violet-500"
                           : "bg-inherit"
                       } items-center cursor-pointer hover:bg-slate-700 gap-4 p-2 rounded-xl`}
                       key={result.id}
                       onClick={() =>
-                        setCurrentTrack({
+                        context?.setCurrentTrack({
                           uri: result.uri,
                           name: result.name,
                           artist: result.artist,
@@ -230,7 +222,7 @@ export default function Search() {
                           {result.artist}
                         </p>
                       </div>
-                      {currentTrack.uri === result.uri ? (
+                      {context?.currentTrack?.uri === result.uri ? (
                         <div class="boxContainer">
                           <div class="box box1"></div>
                           <div class="box box2"></div>

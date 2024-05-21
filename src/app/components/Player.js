@@ -7,7 +7,7 @@ export default function Player({ accessToken, currentTrack }) {
       <SpotifyWebPlayer
         play={true}
         token={accessToken}
-        uris={[currentTrack.uri]}
+        uris={[currentTrack?.uri]}
         styles={{
           bgColor: "#0F172A",
           activeColor: "#fff",

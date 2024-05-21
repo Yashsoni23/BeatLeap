@@ -10,6 +10,7 @@ import { IoIosArrowDropdown } from "react-icons/io";
 import SpotifyWebApi from "spotify-web-api-node";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import { useCustomContext } from "../context/customClient";
 
 const spotifyWebAPI = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -18,6 +19,7 @@ const spotifyWebAPI = new SpotifyWebApi({
 export default function Navbar() {
   const [accessToken, setAccessToken] = useState();
   const session = useSession();
+  const context = useCustomContext();
 
   const [userInfo, setUserInfo] = useState({
     name: "",
@@ -29,8 +31,8 @@ export default function Navbar() {
   const [toggleNav, setToggleNav] = useState(false);
 
   useEffect(() => {
-    setAccessToken(session.data?.accessToken);
-  }, []);
+    setAccessToken(context.accessToken);
+  }, [context.accessToken, context, accessToken]);
 
   useEffect(() => {
     if (accessToken) {

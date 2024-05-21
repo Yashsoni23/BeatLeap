@@ -10,7 +10,7 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { BiPlayCircle } from "react-icons/bi";
 import { RxLoop } from "react-icons/rx";
 import { useSession } from "next-auth/react";
-import Player from "../components/Player";
+import { useCustomContext } from "../context/customClient";
 
 const spotifyWebAPI = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -18,22 +18,14 @@ const spotifyWebAPI = new SpotifyWebApi({
 
 export default function Beatstack() {
   const [accessToken, setAccessToken] = useState();
-  const session = useSession();
+  const context = useCustomContext();
   const [Usersplaylists, setUsersplaylists] = useState([]);
   const [currentPlaylist, setCurrentPlaylist] = useState({});
   const [currentPlaylistsTrack, setCurrentPlaylistsTrack] = useState([]);
-  const [recentlyPlayed, setRecentlyPlayed] = useState([]);
-  const [currentTrack, setCurrentTrack] = useState({
-    uri: "",
-    name: "",
-    artist: "",
-    album: "",
-    image: "",
-    id: "",
-  });
+
   useEffect(() => {
-    setAccessToken(session.data.accessToken);
-  }, []);
+    setAccessToken(context?.accessToken);
+  }, [context, accessToken]);
   const getPlaylistsTracks = (id) => {
     if (accessToken) {
       spotifyWebAPI.setAccessToken(accessToken);
@@ -97,12 +89,10 @@ export default function Beatstack() {
       .split(",")
       .slice(0, -1);
     console.log(tracksUri, "tracksUri");
-    setCurrentTrack({
-      ...currentTrack,
+    context?.setCurrentTrack({
+      ...context?.currentTrack,
       uri: tracksUri,
     });
-    // console.log(currentTrack);
-    //   setQueue(tracksUri)
   };
 
   return (
@@ -155,7 +145,6 @@ export default function Beatstack() {
             <div className="float-right absolute bottom-18 sm:right-44 sm:bottom-2 z-[99] right-0 font-bold text-2xl p-5 white">
               <RxLoop className="text-2xl cursor-pointer" onClick={startLoop} />
             </div>
-            <Player accessToken={accessToken} currentTrack={currentTrack} />
           </div>
 
           <div className="flex flex-col relative  bg-slate-900 w-max  sm:w-1/2 h-full">
@@ -166,12 +155,12 @@ export default function Beatstack() {
                     <div
                       key={track.id}
                       className={`flex ${
-                        currentTrack.uri === track.uri
+                        context && context?.currentTrack?.uri === track.uri
                           ? "bg-gradient-to-t from-indigo-500 to-violet-500"
                           : "bg-inherit"
                       } p-2 cursor-pointer flex-col sm:flex-row items-center sm:justify-between  sm:gap-3`}
                       onClick={() =>
-                        setCurrentTrack({
+                        context?.setCurrentTrack({
                           name: track.name,
                           id: track.id,
                           image: track.image,
@@ -186,7 +175,7 @@ export default function Beatstack() {
                       <h1 className="text-white w-full text-[.5rem] sm:text-sm max-[450px]:w-[60px] font-bold ">
                         {track.name}
                       </h1>
-                      {currentTrack.uri === track.uri ? (
+                      {context?.currentTrack?.uri === track.uri ? (
                         <div className="boxContainer">
                           <div className="box box1"></div>
                           <div className="box box2"></div>
